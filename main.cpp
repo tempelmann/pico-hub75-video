@@ -117,7 +117,7 @@ void process_data (const char *topic, const u8_t *data, u16_t len, bool lastPart
 		if (strcmp(cmd, "mem") == 0) {
 			postMsg("Free: %lu", getFreeHeap());
 		}
-	} if (strcmp(topic, "b") == 0) {	// set brightness
+	} else if (strcmp(topic, "b") == 0) {	// set brightness
 		int v = 0;
 		sscanf (cmd, "%d", &v);
 		if (v >= 1 && v <= 6) {
@@ -125,7 +125,7 @@ void process_data (const char *topic, const u8_t *data, u16_t len, bool lastPart
 		} else {
 			postError ("brightness value outside 1-6: %d", v);
 		}
-	} if (strcmp(topic, "t") == 0) {	// show text
+	} else if (strcmp(topic, "t") == 0) {	// show text
 		panel.show_5x7_string (1, 10, (const char*)cmd);
 	} else if (topic[0] == 'i') {	// i16 or i32
 		if ((bufOfs + len) > sizeof(imgBuf)) {

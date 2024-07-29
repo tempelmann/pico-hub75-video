@@ -1,0 +1,16 @@
+#!/bin/sh
+
+/usr/local/bin/picotool load -f -x $1
+
+echo "–– Start ––"
+
+# keep tryingo to read from the serial modem port until it succeeds
+while true; do 
+  sh -c 'cat /dev/cu.usbmodem* 2>/dev/null'
+  if [[ "$?" -eq 0 ]]; then 
+    break
+  fi
+done
+
+echo
+echo "--Closed--"
